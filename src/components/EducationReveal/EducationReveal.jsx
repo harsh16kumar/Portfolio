@@ -2,9 +2,9 @@ import { useEffect, useRef } from 'react';
 import './EducationReveal.css';
 
 const EDUCATION_IMAGES = [
-  '/education-cards/0001.png',
-  '/education-cards/0002.png',
-  '/education-cards/0003.png',
+  '/education-cards/0001.webp',
+  '/education-cards/0002.webp',
+  '/education-cards/0003.webp',
 ];
 
 function clamp(value, min = 0, max = 1) {

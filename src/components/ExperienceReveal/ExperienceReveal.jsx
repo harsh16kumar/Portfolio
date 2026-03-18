@@ -2,8 +2,8 @@ import { useEffect, useRef } from 'react';
 import './ExperienceReveal.css';
 
 const EXPERIENCE_IMAGES = [
-  '/experience-cards/0001.png',
-  '/experience-cards/0002.png',
+  '/experience-cards/0001.webp',
+  '/experience-cards/0002.webp',
 ];
 
 function clamp(value, min = 0, max = 1) {

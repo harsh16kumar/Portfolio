@@ -31,10 +31,15 @@ export default function ScrollSequence({
     const getRenderScale = () => (window.innerWidth <= 768 ? 0.5 : 0.65);
 
     let lastDrawnIndex = -1;
+    let lastDrawTime = 0;
     let idlePreloadId = null;
     let timeoutPreloadId = null;
 
     const drawFrame = (index, force = false) => {
+      const now = performance.now();
+      // Throttle draws on high-refresh-rate devices to reduce jank.
+      if (!force && now - lastDrawTime < 33) return; // ~30 FPS
+
       const resolvedIndex = Math.max(0, Math.min(frameCount - 1, Math.round(index)));
       if (!force && resolvedIndex === lastDrawnIndex) return;
 
