@@ -1,0 +1,126 @@
+.experience-section {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--bg-secondary);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.experience-container {
+  width: 100%;
+  max-width: 1200px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10vh;
+}
+
+.section-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  background: linear-gradient(to right, #fff, #888);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  z-index: 10;
+}
+
+.animation-area {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end; /* Bag drops to the bottom of this area */
+  padding-bottom: 100px;
+}
+
+/* Bag Styles */
+.portfolio-bag {
+  position: absolute;
+  bottom: 50px;
+  width: 160px;
+  height: 140px;
+  background: linear-gradient(145deg, var(--accent-color), #2563eb);
+  border-radius: 20px 20px 30px 30px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), inset 0 5px 15px rgba(255, 255, 255, 0.2);
+  z-index: 50; /* Above cards initially */
+  flex-direction: column;
+  border-top: 15px solid #1e40af;
+}
+
+/* Bag Handle fake */
+.portfolio-bag::before {
+  content: '';
+  position: absolute;
+  top: -30px;
+  width: 80px;
+  height: 40px;
+  border: 10px solid #1e40af;
+  border-bottom: none;
+  border-radius: 40px 40px 0 0;
+}
+
+.bag-label {
+  margin-top: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Cards Container */
+.cards-container {
+  position: absolute;
+  bottom: 120px; /* Inside/Behind the bag */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Individual Flashcard */
+.experience-card {
+  position: absolute;
+  width: 250px;
+  padding: 30px 20px;
+  background: rgba(30, 30, 30, 0.85); /* Slightly darker glass */
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+  transform-origin: bottom center; /* Pop out from the bottom */
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.experience-card:hover {
+  box-shadow: 0 20px 40px var(--accent-glow);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.card-year {
+  color: var(--accent-color);
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.card-role {
+  font-size: 1.2rem;
+  color: white;
+  margin-bottom: 5px;
+  line-height: 1.2;
+}
+
+.card-company {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}

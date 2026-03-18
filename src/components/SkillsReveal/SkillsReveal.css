@@ -1,0 +1,208 @@
+.skills-reveal {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh + 24rem);
+  z-index: 163;
+  /* Allow hover interaction on skill cards/chips */
+  pointer-events: auto;
+}
+
+.skills-reveal__group {
+  align-items: start;
+  position: relative;
+  left: -19rem;
+  margin: 0 auto;
+  max-width: min(40vw, 34rem);
+
+  display: block;
+  column-count: 2;
+  column-gap: 1.2rem;
+
+  opacity: 0;
+  transform: translateY(60px);
+  padding-top: 28rem;
+  padding-bottom: 8rem;
+}
+
+.skills-reveal__line {
+  position: absolute;
+  left: 4.5rem;
+  right: calc(100vw - clamp(56vw, 60vw, 62vw) + 1.2rem);
+  height: 3px;
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.95) 8%,
+      rgba(255, 255, 255, 0.95) 92%,
+      rgba(255, 255, 255, 0) 100%);
+  box-shadow:
+    0 0 12px rgba(255, 255, 255, 0.38),
+    0 0 28px rgba(255, 255, 255, 0.14);
+  transform-origin: left center;
+  transform: translateY(52px) scaleX(0);
+  opacity: 0;
+  will-change: transform, opacity, top;
+}
+
+.skills-reveal__section {
+  break-inside: avoid;
+  margin-bottom: 1.2rem;
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  
+  position: relative;
+  z-index: 1;
+  border: 1px solid transparent;
+
+  backdrop-filter: blur(6px);
+  transition:
+    transform 0.18s ease-out,
+    box-shadow 0.18s ease-out;
+  height: fit-content;
+  overflow: hidden;
+}
+
+.skills-reveal__section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 11px;
+  background: rgb(18, 25, 34); /* Opaque color to block light */
+  z-index: -1;
+  transition: background 0.18s ease-out;
+}
+
+.skills-reveal__section::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 12px;
+  background: rgba(180, 220, 255, 0.08);
+  z-index: -2;
+  transition: background 0.18s ease-out;
+}
+
+
+.skills-reveal__title {
+  margin: 0 0 0.55rem;
+
+  color: rgba(245, 249, 255, 0.9);
+
+  font-size: 0.85rem;
+  font-weight: 600;
+
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+
+.skills-reveal__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.skills-reveal__chip {
+  padding: 0.22rem 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: rgba(220, 240, 255, 0.95);
+  cursor: default;
+  
+  position: relative;
+  z-index: 1;
+  border: 1px solid transparent;
+  overflow: hidden;
+}
+
+.skills-reveal__chip::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 5px;
+  background: rgb(24, 34, 46); /* Opaque color to block light */
+  z-index: -1;
+  transition: background 0.16s ease-out;
+}
+
+.skills-reveal__chip::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 6px;
+  background: rgba(140, 200, 255, 0.12);
+  z-index: -2;
+  transition: background 0.16s ease-out;
+}
+
+/* When hovering a chip, gently lift both the chip and its parent box */
+.skills-reveal__section:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.4),
+    0 0 18px rgba(120, 180, 255, 0.24);
+}
+.skills-reveal__section:hover::before {
+  background: rgb(22, 32, 44);
+}
+.skills-reveal__section:hover::after {
+  background: 
+    radial-gradient(280px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.65), transparent 100%),
+    rgba(180, 220, 255, 0.3);
+}
+
+.skills-reveal__section:hover .skills-reveal__chip {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+.skills-reveal__section:hover .skills-reveal__chip::before {
+  background: rgb(30, 43, 60);
+}
+.skills-reveal__section:hover .skills-reveal__chip::after {
+  background: rgba(180, 220, 255, 0.3);
+}
+
+.skills-reveal__section:hover .skills-reveal__chip:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35), 0 0 14px rgba(120, 180, 255, 0.25);
+  color: #fff;
+}
+.skills-reveal__section:hover .skills-reveal__chip:hover::before {
+  background: rgb(56, 84, 118);
+}
+.skills-reveal__section:hover .skills-reveal__chip:hover::after {
+  background: 
+    radial-gradient(130px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.95), transparent 100%),
+    rgba(180, 220, 255, 0.6);
+}
+
+
+@media (max-width: 1100px) {
+
+  .skills-reveal__group {
+    left: -11rem;
+    grid-template-columns: 1fr;
+  }
+
+  .skills-reveal__line {
+    right: calc(100vw - 60vw + 1rem);
+  }
+
+}
+
+@media (max-width: 768px) {
+  .skills-reveal {
+    min-height: calc(100vh + 20rem);
+  }
+
+  .skills-reveal__group {
+    top: calc(52% + 22rem);
+    left: -24rem;
+    width: min(92vw, 24rem);
+  }
+
+  .skills-reveal__line {
+    left: 1.5rem;
+    right: 1.5rem;
+  }
+
+}

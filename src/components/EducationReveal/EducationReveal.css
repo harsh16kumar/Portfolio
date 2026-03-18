@@ -1,0 +1,146 @@
+.education-reveal {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  z-index: 162;
+  pointer-events: none;
+}
+
+.education-reveal__group {
+  position: relative;
+  top: -34rem;
+  left: -19rem;
+  margin: 0 auto;
+  max-width: min(32vw, 26rem);
+  width: 100%;
+  height: auto;
+  transform: translateY(60px);
+  opacity: 0;
+  will-change: transform, opacity;
+  padding-top: 14rem;
+  padding-bottom: 8rem;
+}
+
+.education-reveal__card {
+  position: absolute;
+  left: 50%;
+  width: clamp(12rem, 16vw, 15rem);
+  opacity: 0;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.education-reveal__border {
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+  --draw: 0;
+  opacity: 0;
+}
+
+.education-reveal__border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 3px; /* Bolder border */
+  border-radius: inherit;
+  
+  /* Start from top (0deg), grow bidirectionally by spreading outwards from center top */
+  /* We use `--draw` to define the visible angle slice */
+  background: conic-gradient(
+    from 180deg at 50% 50%,
+    rgba(255, 255, 255, 0) calc(180deg - (var(--draw) * 180deg)),
+    rgba(255, 255, 255, 0.95) calc(180deg - (var(--draw) * 180deg)),
+    rgba(255, 255, 255, 0.95) calc(180deg + (var(--draw) * 180deg)),
+    rgba(255, 255, 255, 0) calc(180deg + (var(--draw) * 180deg))
+  );
+  
+  box-shadow:
+    0 0 14px rgba(255, 255, 255, 0.2),
+    0 0 24px rgba(255, 255, 255, 0.1);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.education-reveal__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 22px;
+}
+
+.education-reveal__line {
+  position: absolute;
+  top: calc(35% - 3rem);
+  left: 4.5rem;
+  right: calc(100vw - clamp(56vw, 60vw, 62vw) + 1.2rem);
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.95) 8%,
+    rgba(255, 255, 255, 0.95) 92%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  box-shadow:
+    0 0 12px rgba(255, 255, 255, 0.38),
+    0 0 28px rgba(255, 255, 255, 0.14);
+  transform-origin: left center;
+  transform: translateY(60px) scaleX(0);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.education-reveal__line--top {
+  top: calc(35% - 33rem);
+}
+
+@media (max-width: 1100px) {
+  .education-reveal__group {
+    left: -12rem;
+    width: min(34vw, 24rem);
+  }
+
+  .education-reveal__card {
+    width: clamp(10rem, 15vw, 13rem);
+  }
+
+  .education-reveal__line {
+    right: calc(100vw - 60vw + 1rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .education-reveal__group {
+    top: calc(52% - 20rem);
+    left: 1rem;
+    width: min(88vw, 22rem);
+    height: 22rem;
+    transform: translateY(60px);
+  }
+
+  .education-reveal__card {
+    width: clamp(8rem, 34vw, 10rem);
+  }
+
+  .education-reveal__border,
+  .education-reveal__image,
+  .education-reveal__card {
+    border-radius: 18px;
+  }
+
+  .education-reveal__line {
+    top: calc(52% + 6rem);
+    left: 1.5rem;
+    right: 1.5rem;
+  }
+
+  .education-reveal__line--top {
+    top: calc(52% - 16rem);
+  }
+}
