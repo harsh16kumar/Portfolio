@@ -116,16 +116,23 @@
 }
 
 @media (max-width: 768px) {
+  .education-reveal {
+    min-height: auto;
+    padding: 0 1rem 1.5rem;
+    pointer-events: auto;
+  }
+
   .education-reveal__group {
-    top: calc(52% - 20rem);
-    left: 1rem;
-    width: min(88vw, 22rem);
-    height: 22rem;
-    transform: translateY(60px);
+    top: 0;
+    left: 0;
+    margin: 0 auto;
+    width: min(100%, 24rem);
+    height: auto;
+    transform: none;
   }
 
   .education-reveal__card {
-    width: clamp(8rem, 34vw, 10rem);
+    width: 100%;
   }
 
   .education-reveal__border,
@@ -135,12 +142,34 @@
   }
 
   .education-reveal__line {
-    top: calc(52% + 6rem);
-    left: 1.5rem;
-    right: 1.5rem;
+    display: none;
   }
 
   .education-reveal__line--top {
-    top: calc(52% - 16rem);
+    display: none;
+  }
+
+  .education-reveal--mobile .education-reveal__group {
+    opacity: 1 !important;
+    transform: none !important;
+    display: grid;
+    gap: 0.75rem;
+    padding: 0;
+    max-width: none;
+  }
+
+  .education-reveal--mobile .education-reveal__card {
+    position: relative;
+    left: auto;
+    opacity: 1;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  .education-reveal--mobile .education-reveal__image {
+    display: block;
   }
 }

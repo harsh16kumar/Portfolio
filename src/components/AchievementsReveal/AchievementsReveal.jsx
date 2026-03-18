@@ -297,7 +297,7 @@
 //   );
 // }
 
-import { useEffect, useRef, forwardRef } from 'react';
+import { useEffect, useRef, forwardRef, useState } from 'react';
 import { achievements } from '../../data/profileData';
 import './AchievementsReveal.css';
 
@@ -374,10 +374,23 @@ const HoverableCard = forwardRef(({ achievement, meta }, ref) => {
 });
 
 export default function AchievementsReveal() {
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   const groupRef = useRef(null);
   const cardRefs = useRef([]);
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 768px)');
+    const handleChange = (event) => setIsMobile(event.matches);
+
+    setIsMobile(mediaQuery.matches);
+    mediaQuery.addEventListener('change', handleChange);
+
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) return undefined;
+
     let frameId = null;
 
     const update = () => {
@@ -440,11 +453,11 @@ export default function AchievementsReveal() {
         window.cancelAnimationFrame(frameId);
       }
     };
-  }, []);
+  }, [isMobile]);
 
   return (
-    <section className="achievements-reveal" aria-label="Achievements reveal">
-      <div ref={groupRef} className="achievements-reveal__group">
+    <section className={`achievements-reveal${isMobile ? ' achievements-reveal--mobile' : ''}`} aria-label="Achievements reveal">
+      <div ref={groupRef} className={`achievements-reveal__group${isMobile ? ' achievements-reveal__group--mobile' : ''}`}>
         {achievements.map((achievement, index) => {
           const meta = ACHIEVEMENT_META[index] ?? {
             label: `Achievement ${index + 1}`,

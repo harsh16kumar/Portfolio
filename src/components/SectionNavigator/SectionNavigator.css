@@ -96,24 +96,6 @@
 
 @media (max-width: 768px) {
   .section-navigator {
-    top: auto;
-    bottom: 1rem;
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 0.5rem;
-    max-width: calc(100vw - 1.25rem);
-    overflow-x: auto;
-    padding-bottom: 0.25rem;
-  }
-
-  .section-navigator__scroll {
     display: none;
-  }
-
-  .section-navigator__item {
-    min-width: max-content;
-    white-space: nowrap;
   }
 }

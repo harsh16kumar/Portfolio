@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './EducationReveal.css';
 
 const EDUCATION_IMAGES = [
@@ -26,6 +26,7 @@ const CARD_LAYOUTS = [
 ];
 
 export default function EducationReveal() {
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   const sectionRef = useRef(null);
   const groupRef = useRef(null);
   const cardRefs = useRef([]);
@@ -34,6 +35,18 @@ export default function EducationReveal() {
   const lineRef = useRef(null);
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 768px)');
+    const handleChange = (event) => setIsMobile(event.matches);
+
+    setIsMobile(mediaQuery.matches);
+    mediaQuery.addEventListener('change', handleChange);
+
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) return undefined;
+
     let frameId = null;
 
     const update = () => {
@@ -123,7 +136,35 @@ export default function EducationReveal() {
         window.cancelAnimationFrame(frameId);
       }
     };
-  }, []);
+  }, [isMobile]);
+
+  if (isMobile) {
+    return (
+      <section
+        ref={sectionRef}
+        className="education-reveal education-reveal--mobile"
+        aria-label="Education card reveal"
+      >
+        <div ref={groupRef} className="education-reveal__group">
+          {EDUCATION_IMAGES.map((image, index) => (
+            <article
+              key={image}
+              ref={(element) => {
+                cardRefs.current[index] = element;
+              }}
+              className={`education-reveal__card education-reveal__card--${index + 1}`}
+            >
+              <img
+                src={image}
+                alt={`Education card ${index + 1}`}
+                className="education-reveal__image"
+              />
+            </article>
+          ))}
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section ref={sectionRef} className="education-reveal" aria-label="Education card reveal">

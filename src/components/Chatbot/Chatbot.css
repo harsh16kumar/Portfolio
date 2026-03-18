@@ -107,8 +107,19 @@
 }
 
 @media (max-width: 768px) {
+  .chat-search-shell {
+    top: 4rem;
+    width: min(86vw, 22rem);
+    height: 48px;
+  }
+
+  .chatbot-container--shrunk .chat-search-shell {
+    width: 48px;
+    height: 48px;
+  }
+
   .chatbot-window {
-    top: 5rem;
+    top: 7.5rem;
     left: 50%;
     transform: translateX(-50%) scale(0.95);
     width: min(92vw, calc(100vw - 1.5rem));

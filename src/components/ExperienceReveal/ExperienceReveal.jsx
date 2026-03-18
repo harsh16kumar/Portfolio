@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './ExperienceReveal.css';
 
 const EXPERIENCE_IMAGES = [
@@ -19,6 +19,7 @@ function easeOutCubic(value) {
 }
 
 export default function ExperienceReveal() {
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   const sectionRef = useRef(null);
   const rowRef = useRef(null);
   const cardRefs = useRef([]);
@@ -26,6 +27,18 @@ export default function ExperienceReveal() {
   const lineRef = useRef(null);
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 768px)');
+    const handleChange = (event) => setIsMobile(event.matches);
+
+    setIsMobile(mediaQuery.matches);
+    mediaQuery.addEventListener('change', handleChange);
+
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) return undefined;
+
     let frameId = null;
 
     const update = () => {
@@ -123,7 +136,33 @@ export default function ExperienceReveal() {
         window.cancelAnimationFrame(frameId);
       }
     };
-  }, []);
+  }, [isMobile]);
+
+  if (isMobile) {
+    return (
+      <section
+        ref={sectionRef}
+        className="experience-reveal experience-reveal--mobile"
+        aria-label="Experience card reveal"
+      >
+        <div ref={rowRef} className="experience-reveal__row">
+          {EXPERIENCE_IMAGES.map((image, index) => (
+            <article
+              key={image}
+              ref={(el) => (cardRefs.current[index] = el)}
+              className="experience-reveal__card"
+            >
+              <img
+                src={image}
+                alt={`Experience card ${index + 1}`}
+                className="experience-reveal__image"
+              />
+            </article>
+          ))}
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section

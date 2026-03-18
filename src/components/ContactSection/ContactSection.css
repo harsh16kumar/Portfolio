@@ -148,15 +148,21 @@
 
 @media (max-width: 768px) {
   .contact-section {
-    padding: 3rem 1rem 0;
-    margin-bottom: -2rem;
+    padding: 0 1rem 1.5rem;
+    margin-bottom: 0;
   }
 
   .contact-section__inner {
-    top: -8rem;
-    left: -4rem;
+    top: 0;
+    left: 0;
     width: min(100%, 24rem);
     padding: 1.4rem;
+  }
+
+  .contact-section__eyebrow,
+  .contact-section__title,
+  .contact-section__copy {
+    display: none;
   }
 
   .contact-section__action {

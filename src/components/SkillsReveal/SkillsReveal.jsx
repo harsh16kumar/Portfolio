@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './SkillsReveal.css';
 
 function clamp(value, min = 0, max = 1) {
@@ -73,11 +73,24 @@ const SKILL_GROUPS = [
 ];
 
 export default function SkillsReveal() {
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   const groupRef = useRef(null);
   const sectionRefs = useRef([]);
   const lineRef = useRef(null);
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 768px)');
+    const handleChange = (event) => setIsMobile(event.matches);
+
+    setIsMobile(mediaQuery.matches);
+    mediaQuery.addEventListener('change', handleChange);
+
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) return undefined;
+
     let frameId = null;
 
     const update = () => {
@@ -143,7 +156,7 @@ export default function SkillsReveal() {
         window.cancelAnimationFrame(frameId);
       }
     };
-  }, []);
+  }, [isMobile]);
 
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -154,7 +167,7 @@ export default function SkillsReveal() {
   };
 
   return (
-    <section className="skills-reveal" aria-label="Skills reveal">
+    <section className={`skills-reveal${isMobile ? ' skills-reveal--mobile' : ''}`} aria-label="Skills reveal">
       <div ref={groupRef} className="skills-reveal__group">
         {SKILL_GROUPS.map((group, index) => (
           <section
@@ -180,7 +193,7 @@ export default function SkillsReveal() {
           </section>
         ))}
       </div>
-      <div ref={lineRef} className="skills-reveal__line" />
+      {!isMobile && <div ref={lineRef} className="skills-reveal__line" />}
     </section>
   );
 }

@@ -191,18 +191,35 @@
 
 @media (max-width: 768px) {
   .skills-reveal {
-    min-height: calc(100vh + 20rem);
+    min-height: auto;
+    padding: 0 1rem 1.5rem;
   }
 
   .skills-reveal__group {
-    top: calc(52% + 22rem);
-    left: -24rem;
-    width: min(92vw, 24rem);
+    top: 0;
+    left: 0;
+    width: min(100%, 24rem);
   }
 
   .skills-reveal__line {
-    left: 1.5rem;
-    right: 1.5rem;
+    display: none;
   }
 
+  .skills-reveal--mobile .skills-reveal__group {
+    margin: 0 auto;
+    display: grid;
+    gap: 0.85rem;
+    column-count: unset;
+    column-gap: 0;
+    opacity: 1 !important;
+    transform: none !important;
+    padding: 0;
+    max-width: none;
+  }
+
+  .skills-reveal--mobile .skills-reveal__section {
+    opacity: 1 !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
 }
