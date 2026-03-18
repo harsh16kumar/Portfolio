@@ -2,11 +2,11 @@ import { useEffect, useRef } from 'react';
 import './ProjectCardFlight.css';
 
 const CARD_IMAGES = [
-  '/project-cards/0001.png',
-  '/project-cards/0002.png',
-  '/project-cards/0003.png',
-  '/project-cards/0004.png',
-  '/project-cards/0005.png',
+  '/project-cards/0001.webp',
+  '/project-cards/0002.webp',
+  '/project-cards/0003.webp',
+  '/project-cards/0004.webp',
+  '/project-cards/0005.webp',
 ];
 const HORIZONTAL_SHIFT = '13.5rem';
 
