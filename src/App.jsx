@@ -77,7 +77,7 @@ function App() {
             <ScrollSequence
               frameCount={176}
               folder="/frames"
-              ext="png"
+              ext="webp"
               scrollPages={projectScrollPages}
             />
           ) : (
