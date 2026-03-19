@@ -2,6 +2,16 @@
 
 Interactive one-page portfolio built with React + Vite, featuring scroll-driven canvas animations (GSAP/ScrollTrigger) and an optional Groq-powered chat assistant.
 
+## Live site
+- [https://harsh16kumar.vercel.app/](https://harsh16kumar.vercel.app/)
+
+## Website screenshots
+Add your website screenshots in `public/screenshots/`.
+
+![Homepage](./public/screenshots/homepage.png)
+![Projects](./public/screenshots/achievements.png)
+![Mobile View](./public/screenshots/mobile-view.jpeg)
+
 ## Tech stack
 - **Runtime**: React
 - **Build**: Vite
